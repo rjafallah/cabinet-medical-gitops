@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cabinet-medical-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/rjafallah/cabinet-medical-gitops.git
+    targetRevision: main
+    path: chart
+    helm:
+      valueFiles:
+        - ../envs/dev/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
