@@ -29,3 +29,8 @@ spec:
           readinessProbe:
             httpGet: { path: /actuator/health/readiness, port: 8080 }
             initialDelaySeconds: 30
+          resources:
+            requests:
+              memory: 384Mi
+            limits:
+              memory: 768Mi

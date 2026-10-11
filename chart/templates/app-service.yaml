@@ -2,10 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   name: cabinet-medical
+  labels:
+    app: cabinet-medical
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   selector:
     app: cabinet-medical
   ports:
-    - port: 8080
+    - name: http
+      port: 8080
